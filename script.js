@@ -18,11 +18,13 @@ var lcPass = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q
 
 var ucPass = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-var specialPass = ['!','@','#','$','%','^','&','*','(','',' ','-','+',''=','[',']','\',';',',','.','/','{','}','|','"','>','?',"'",']
+var specialPass = ['!','@','#','$','%','^','&','*','(','',' ','-','+','=','[',']','\\',';',',','.','/','{','}','|','"','>','?',"'"]
+var possibleChar = [];
+var password = '';
 
 var globalPass = [lcPass, ucPass, numPass, specialPass];
+function generatePassword() {
 
-function passwordOptions() {
   var options = parseInt(
     prompt("How many number of characters in your password? ")
   );
@@ -53,29 +55,35 @@ var rulesObject ={
   options:options,
 lcConfirm:lcConfirm  }
 console.log(rulesObject,rulesObject.options,rulesObject.options)
-return;
-}
 
-ucConfirm: ucConfirm  }
-console.log(rulesObject,rulesObject.options,rulesObject.options)
-return;
+
+console.log (ucConfirm)
+console.log(possibleChar)
+if (ucConfirm)  {
+possibleChar=possibleChar.concat(ucPass)
 }
-numConfirm: numConfirm }
-console.log(rulesObject,rulesObject.options,rulesObject.options)
-return;
+if (numConfirm) {
+possibleChar=possibleChar.concat(numPass);
 }
-specConfirm: specConfirm }
-console.log(rulesObject,rulesObject.options,rulesObject.options)
-return;
+if (specConfirm) {
+possibleChar=possibleChar.concat(specialPass);
+
 }
+if (lcConfirm) {
+  possibleChar=possibleChar.concat(lcPass);
+}
+console.log(possibleChar);
 
 
 
 var i;
-for (i=0; i<option.length; i++) {} 
+for (i=0; i<options; i++) {
+  var randNum = Math.floor(Math.random() * possibleChar.length);
+  password += possibleChar[randNum]
+} 
+return password;
 
 
-function generatePassword() {
-  var randNum = Math.floor(Math.random() * 10);
+  
   console.log(randNum);
 }
